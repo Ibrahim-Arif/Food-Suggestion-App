@@ -10,6 +10,15 @@
 <key>NSMicrophoneUsageDescription</key>
 <string>Give $(PRODUCT_NAME) permission to use your microphone</string> -->
 
+
+<key>NSCameraUsageDescription</key>
+  <string>Please allow us, to access camera</string>
+
+   <key>NSPhotoLibraryUsageDescription</key>
+  <string>Please allow us, to access photos library</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Please allow us, to access photos library</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -27,7 +27,6 @@ function Header({title}) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
   },

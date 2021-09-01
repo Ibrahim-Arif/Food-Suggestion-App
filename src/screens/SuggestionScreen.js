@@ -99,91 +99,93 @@ function SuggestionScreen({}) {
 
   return (
     <Screen style={styles.container}>
-      <Header title="Suggest a Food" />
+      <View style={{marginHorizontal: 12}}>
+        <Header title="Suggest a Food" />
 
-      <View style={{height: 10}} />
-      <Title title="Add Photos" />
+        <View style={{height: 10}} />
+        <Title title="Add Photos" />
 
-      <ImagePickerList
-        imageUris={imageUris}
-        onAdd={uri => setImageUris([...imageUris, uri])}
-        onDelete={uri => setImageUris(imageUris.filter(i => i !== uri))}
-      />
-
-      <Title title="Select a Restuarant" />
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          backgroundColor: colors.backgroundLight,
-          borderRadius: 15,
-        }}>
-        <EvilIcons
-          name="search"
-          size={30}
-          color={colors.textLight}
-          style={{marginHorizontal: 10}}
+        <ImagePickerList
+          imageUris={imageUris}
+          onAdd={uri => setImageUris([...imageUris, uri])}
+          onDelete={uri => setImageUris(imageUris.filter(i => i !== uri))}
         />
-        <TextInput
-          style={{flex: 1, color: colors.textLight, fontSize: 16}}
-          onChangeText={setSearch}
-          value={search}
-          placeholder="Search a Restuarant"
-          placeholderTextColor={colors.textLight}
-        />
+
+        <Title title="Select a Restuarant" />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: colors.backgroundLight,
+            borderRadius: 15,
+          }}>
+          <EvilIcons
+            name="search"
+            size={30}
+            color={colors.textLight}
+            style={{marginHorizontal: 10}}
+          />
+          <TextInput
+            style={{flex: 1, color: colors.textLight, fontSize: 16, height: 50}}
+            onChangeText={setSearch}
+            value={search}
+            placeholder="Search a Restuarant"
+            placeholderTextColor={colors.textLight}
+          />
+        </View>
+
+        <View style={{height: 5}} />
+        <Title title="Add Description" />
+        <View style={styles.desc}>
+          <TextInput
+            style={{color: colors.textLight, fontSize: 16}}
+            onChangeText={setDescription}
+            value={description}
+            placeholder="Write description here"
+            placeholderTextColor={colors.textLight}
+          />
+        </View>
+
+        <View style={{height: 10}} />
+        <Title title="Add Tags" />
+        <View>
+          <FlatList
+            data={tagsList}
+            keyExtractor={item => item.title}
+            showsHorizontalScrollIndicator={false}
+            columnWrapperStyle={{flexWrap: 'wrap'}}
+            numColumns={3}
+            ListFooterComponent={
+              <View style={styles.suggestButton}>
+                <Entypo name="plus" size={24} color={colors.textLight} />
+                <Text style={{color: colors.textLight, fontWeight: 'bold'}}>
+                  Suggest Tag
+                </Text>
+              </View>
+            }
+            renderItem={({item}) => (
+              <TagButton
+                title={item.title}
+                selectedTagsList={selectedTags}
+                setSelectedTagsList={setSelectedTags}
+              />
+            )}
+          />
+        </View>
+
+        <Button
+          mode="contained"
+          onPress={handleCreate}
+          color={colors.purple}
+          style={{
+            marginTop: 20,
+            borderRadius: 15,
+            height: 40,
+            justifyContent: 'center',
+          }}>
+          {'Create & Review'}
+        </Button>
       </View>
-
-      <View style={{height: 5}} />
-      <Title title="Add Description" />
-      <View style={styles.desc}>
-        <TextInput
-          style={{color: colors.textLight, fontSize: 16}}
-          onChangeText={setDescription}
-          value={description}
-          placeholder="Write description here"
-          placeholderTextColor={colors.textLight}
-        />
-      </View>
-
-      <View style={{height: 10}} />
-      <Title title="Add Tags" />
-      <View>
-        <FlatList
-          data={tagsList}
-          keyExtractor={item => item.title}
-          showsHorizontalScrollIndicator={false}
-          columnWrapperStyle={{flexWrap: 'wrap'}}
-          numColumns={3}
-          ListFooterComponent={
-            <View style={styles.suggestButton}>
-              <Entypo name="plus" size={24} color={colors.textLight} />
-              <Text style={{color: colors.textLight, fontWeight: 'bold'}}>
-                Suggest Tag
-              </Text>
-            </View>
-          }
-          renderItem={({item}) => (
-            <TagButton
-              title={item.title}
-              selectedTagsList={selectedTags}
-              setSelectedTagsList={setSelectedTags}
-            />
-          )}
-        />
-      </View>
-
-      <Button
-        mode="contained"
-        onPress={handleCreate}
-        color={colors.purple}
-        style={{
-          marginTop: 20,
-          borderRadius: 15,
-          height: 40,
-          justifyContent: 'center',
-        }}>
-        {'Create & Review'}
-      </Button>
     </Screen>
   );
 }
@@ -192,7 +194,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
-    paddingHorizontal: 12,
   },
   desc: {
     backgroundColor: colors.backgroundLight,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
     height: 100,
     paddingLeft: 25,
     paddingRight: 10,
-    paddingVertical: 5,
+    paddingVertical: 10,
   },
   suggestButton: {
     flexDirection: 'row',
