@@ -1,18 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Alert,
   Image,
   StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
+  PermissionsAndroid,
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary} from 'react-native-image-picker';
+// import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 import colors from '../config/colors';
 
 function ImagePicker({imageUri, onChangeImage, style}) {
+  // useEffect(() => {
+  //   check(PERMISSIONS.IOS.PHOTO_LIBRARY)
+  //     .then(result => {
+  //       switch (result) {
+  //         case RESULTS.DENIED:
+  //           alert('Gallery Permission Denied');
+  //           break;
+  //       }
+  //     })
+  //     .catch(error => {
+  //       // …
+  //     });
+  // }, []);
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          title: 'Gallery Permission',
+          message: 'We need access to your gallery',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   const pickImage = () => {
     try {
       const options = {
@@ -36,20 +69,22 @@ function ImagePicker({imageUri, onChangeImage, style}) {
         }
       });
     } catch (error) {
-      alert('something went wrong!!');
+      alert('Permission Not Granted !!');
     }
   };
 
   const handleOnPress = () => {
-    !imageUri
-      ? pickImage()
-      : Alert.alert('Delete', 'Are you sure?', [
-          {text: 'No'},
-          {
-            text: 'Yes',
-            onPress: () => onChangeImage(null),
-          },
-        ]);
+    requestCameraPermission().then(() => {
+      !imageUri
+        ? pickImage()
+        : Alert.alert('Delete', 'Are you sure?', [
+            {text: 'No'},
+            {
+              text: 'Yes',
+              onPress: () => onChangeImage(null),
+            },
+          ]);
+    });
   };
 
   return (

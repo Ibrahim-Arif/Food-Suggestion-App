@@ -14,10 +14,10 @@
 <key>NSCameraUsageDescription</key>
   <string>Please allow us, to access camera</string>
 
-   <key>NSPhotoLibraryUsageDescription</key>
+   <!-- <key>NSPhotoLibraryUsageDescription</key>
   <string>Please allow us, to access photos library</string>
   <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>Please allow us, to access photos library</string>
+  <string>Please allow us, to access photos library</string> -->
 
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
