@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   Alert,
   Image,
@@ -10,36 +10,14 @@ import {
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary} from 'react-native-image-picker';
-// import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 import colors from '../config/colors';
 
 function ImagePicker({imageUri, onChangeImage, style}) {
-  // useEffect(() => {
-  //   check(PERMISSIONS.IOS.PHOTO_LIBRARY)
-  //     .then(result => {
-  //       switch (result) {
-  //         case RESULTS.DENIED:
-  //           alert('Gallery Permission Denied');
-  //           break;
-  //       }
-  //     })
-  //     .catch(error => {
-  //       // …
-  //     });
-  // }, []);
-
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        {
-          title: 'Gallery Permission',
-          message: 'We need access to your gallery',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        },
       );
     } catch (err) {
       console.warn(err);
