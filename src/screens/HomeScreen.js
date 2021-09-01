@@ -1,22 +1,42 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import Icons from 'react-native-vector-icons/SimpleLineIcons';
 
-function HomeScreen({}) {
+import colors from '../config/colors';
+
+const Button = ({navigation}) => (
+  <TouchableOpacity onPress={() => navigation.navigate('Suggestion')}>
+    <View
+      style={{
+        // position: 'absolute',
+        alignSelf: 'flex-end',
+        // bottom: 0,
+        right: 10,
+      }}>
+      <Icons
+        name="cup"
+        size={26}
+        color="white"
+        style={{
+          backgroundColor: colors.purple,
+          padding: 15,
+          borderRadius: 36,
+          alignSelf: 'center',
+        }}
+      />
+      <Text style={{color: 'white', marginTop: 5}}>Suggest a Food</Text>
+    </View>
+  </TouchableOpacity>
+);
+
+function HomeScreen({navigation}) {
   const mapStyle = [
     {
       elementType: 'geometry',
       stylers: [
         {
-          color: '#212121',
-        },
-      ],
-    },
-    {
-      elementType: 'labels.icon',
-      stylers: [
-        {
-          visibility: 'off',
+          color: '#242f3e',
         },
       ],
     },
@@ -24,7 +44,7 @@ function HomeScreen({}) {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#757575',
+          color: '#746855',
         },
       ],
     },
@@ -32,33 +52,7 @@ function HomeScreen({}) {
       elementType: 'labels.text.stroke',
       stylers: [
         {
-          color: '#212121',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative',
-      elementType: 'geometry',
-      stylers: [
-        {
-          color: '#757575',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.country',
-      elementType: 'labels.text.fill',
-      stylers: [
-        {
-          color: '#9e9e9e',
-        },
-      ],
-    },
-    {
-      featureType: 'administrative.land_parcel',
-      stylers: [
-        {
-          visibility: 'off',
+          color: '#242f3e',
         },
       ],
     },
@@ -67,7 +61,7 @@ function HomeScreen({}) {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#bdbdbd',
+          color: '#d59563',
         },
       ],
     },
@@ -76,7 +70,7 @@ function HomeScreen({}) {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#757575',
+          color: '#d59563',
         },
       ],
     },
@@ -85,7 +79,7 @@ function HomeScreen({}) {
       elementType: 'geometry',
       stylers: [
         {
-          color: '#181818',
+          color: '#263c3f',
         },
       ],
     },
@@ -94,43 +88,34 @@ function HomeScreen({}) {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#616161',
-        },
-      ],
-    },
-    {
-      featureType: 'poi.park',
-      elementType: 'labels.text.stroke',
-      stylers: [
-        {
-          color: '#1b1b1b',
+          color: '#6b9a76',
         },
       ],
     },
     {
       featureType: 'road',
-      elementType: 'geometry.fill',
-      stylers: [
-        {
-          color: '#2c2c2c',
-        },
-      ],
-    },
-    {
-      featureType: 'road',
-      elementType: 'labels.text.fill',
-      stylers: [
-        {
-          color: '#8a8a8a',
-        },
-      ],
-    },
-    {
-      featureType: 'road.arterial',
       elementType: 'geometry',
       stylers: [
         {
-          color: '#373737',
+          color: '#38414e',
+        },
+      ],
+    },
+    {
+      featureType: 'road',
+      elementType: 'geometry.stroke',
+      stylers: [
+        {
+          color: '#212a37',
+        },
+      ],
+    },
+    {
+      featureType: 'road',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          color: '#9ca5b3',
         },
       ],
     },
@@ -139,34 +124,43 @@ function HomeScreen({}) {
       elementType: 'geometry',
       stylers: [
         {
-          color: '#3c3c3c',
+          color: '#746855',
         },
       ],
     },
     {
-      featureType: 'road.highway.controlled_access',
-      elementType: 'geometry',
+      featureType: 'road.highway',
+      elementType: 'geometry.stroke',
       stylers: [
         {
-          color: '#4e4e4e',
+          color: '#1f2835',
         },
       ],
     },
     {
-      featureType: 'road.local',
+      featureType: 'road.highway',
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#616161',
+          color: '#f3d19c',
         },
       ],
     },
     {
       featureType: 'transit',
+      elementType: 'geometry',
+      stylers: [
+        {
+          color: '#2f3948',
+        },
+      ],
+    },
+    {
+      featureType: 'transit.station',
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#757575',
+          color: '#d59563',
         },
       ],
     },
@@ -175,7 +169,7 @@ function HomeScreen({}) {
       elementType: 'geometry',
       stylers: [
         {
-          color: '#000000',
+          color: '#17263c',
         },
       ],
     },
@@ -184,7 +178,16 @@ function HomeScreen({}) {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#3d3d3d',
+          color: '#515c6d',
+        },
+      ],
+    },
+    {
+      featureType: 'water',
+      elementType: 'labels.text.stroke',
+      stylers: [
+        {
+          color: '#17263c',
         },
       ],
     },
@@ -193,17 +196,17 @@ function HomeScreen({}) {
   return (
     <View style={styles.container}>
       <MapView
-        style={{flex: 1}}
+        style={styles.map}
         customMapStyle={mapStyle}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
       />
-      {/* <Text>hello </Text> */}
+      <Button navigation={navigation} />
     </View>
   );
 }
@@ -211,6 +214,9 @@ function HomeScreen({}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
