@@ -126,7 +126,7 @@ function Card({item, forRestuarant = true}) {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 15,
-    marginBottom: 5,
+    marginVertical: 7.5,
   },
   rowContainer: {
     flexDirection: 'row',
