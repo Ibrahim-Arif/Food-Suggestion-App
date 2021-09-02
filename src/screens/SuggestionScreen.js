@@ -65,24 +65,12 @@ function SuggestionScreen({}) {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const tagsList = [
-    {
-      title: 'High Protien',
-    },
-    {
-      title: 'High Fiber',
-    },
-    {
-      title: 'Low Carbs',
-    },
-    {
-      title: 'Low Fat',
-    },
-    {
-      title: 'Keto',
-    },
-    {
-      title: 'Balanced',
-    },
+    {title: 'High Protien'},
+    {title: 'High Fiber'},
+    {title: 'Low Carbs'},
+    {title: 'Low Fat'},
+    {title: 'Keto'},
+    {title: 'Balanced'},
   ];
 
   const handleCreate = () => {

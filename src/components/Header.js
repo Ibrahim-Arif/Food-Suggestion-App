@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     borderRadius: 18,
   },
   text: {
-    marginTop: 5,
     fontSize: 20,
+    marginRight: 40,
   },
 });
 
