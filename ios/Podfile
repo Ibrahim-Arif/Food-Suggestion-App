@@ -14,9 +14,9 @@ target 'foodapp4' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
-  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
-  pod 'Permission-MediaLibrary', :path => "../node_modules/react-native-permissions/ios/MediaLibrary"
-  pod 'Permission-PhotoLibrary', :path => "../node_modules/react-native-permissions/ios/PhotoLibrary"
+  # pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
+  # pod 'Permission-MediaLibrary', :path => "../node_modules/react-native-permissions/ios/MediaLibrary"
+  # pod 'Permission-PhotoLibrary', :path => "../node_modules/react-native-permissions/ios/PhotoLibrary"
 
   target 'foodapp4Tests' do
     inherit! :complete

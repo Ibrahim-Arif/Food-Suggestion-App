@@ -4,4 +4,5 @@ export default {
   backgroundLight: '#37435B',
   textLight: '#BCC6DE',
   textDark: '#9AA1BE',
+  gold: '#F0A83B',
 };

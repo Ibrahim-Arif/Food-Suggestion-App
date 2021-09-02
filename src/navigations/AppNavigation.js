@@ -7,7 +7,9 @@ import RestaurantScreen from '../screens/RestaurantScreen';
 
 const Stack = createStackNavigator();
 const AppNavigation = () => (
-  <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+  <Stack.Navigator
+    initialRouteName="Restaurant"
+    screenOptions={{headerShown: false}}>
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Suggestion" component={SuggestionScreen} />
     <Stack.Screen name="Restaurant" component={RestaurantScreen} />

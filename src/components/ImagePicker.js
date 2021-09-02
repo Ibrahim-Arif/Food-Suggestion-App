@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {launchImageLibrary} from 'react-native-image-picker';
+import * as ImagePickerLib from 'react-native-image-picker';
 
 import colors from '../config/colors';
 
@@ -19,6 +19,18 @@ function ImagePicker({imageUri, onChangeImage, style}) {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
       );
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        !imageUri
+          ? pickImage()
+          : Alert.alert('Delete', 'Are you sure?', [
+              {text: 'No'},
+              {
+                text: 'Yes',
+                onPress: () => onChangeImage(null),
+              },
+            ]);
+      }
     } catch (err) {
       console.warn(err);
     }
@@ -30,11 +42,12 @@ function ImagePicker({imageUri, onChangeImage, style}) {
         storageOptions: {
           path: 'images',
           mediaType: 'photo',
+          skipBackup: true,
         },
         includeBase64: true,
       };
 
-      launchImageLibrary(options, response => {
+      ImagePickerLib.launchImageLibrary(options, response => {
         if (response.didCancel) {
           console.log('User cancelled image picker');
         } else if (response.error) {
@@ -52,17 +65,7 @@ function ImagePicker({imageUri, onChangeImage, style}) {
   };
 
   const handleOnPress = () => {
-    requestCameraPermission().then(() => {
-      !imageUri
-        ? pickImage()
-        : Alert.alert('Delete', 'Are you sure?', [
-            {text: 'No'},
-            {
-              text: 'Yes',
-              onPress: () => onChangeImage(null),
-            },
-          ]);
-    });
+    requestCameraPermission();
   };
 
   return (
