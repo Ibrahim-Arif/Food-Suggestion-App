@@ -1,20 +1,33 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  Platform,
+} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import Icons from 'react-native-vector-icons/SimpleLineIcons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import colors from '../config/colors';
+import Screen from '../components/Screen';
 
 const Button = ({navigation}) => (
   <TouchableOpacity onPress={() => navigation.navigate('Suggestion')}>
     <View
       style={{
-        // position: 'absolute',
+        // width: 100,
+        // backgroundColor: 'pink',
+        alignItems: 'center',
         alignSelf: 'flex-end',
-        // bottom: 0,
-        right: 10,
+        height: '100%',
+        justifyContent: 'flex-end',
+        bottom: 100,
+        right: 15,
       }}>
-      <Icons
+      <SimpleLineIcons
         name="cup"
         size={26}
         color="white"
@@ -22,7 +35,6 @@ const Button = ({navigation}) => (
           backgroundColor: colors.purple,
           padding: 15,
           borderRadius: 36,
-          alignSelf: 'center',
         }}
       />
       <Text style={{color: 'white', marginTop: 5}}>Suggest a Food</Text>
@@ -194,7 +206,7 @@ function HomeScreen({navigation}) {
   ];
 
   return (
-    <View style={styles.container}>
+    <Screen style={styles.container}>
       <MapView
         style={styles.map}
         customMapStyle={mapStyle}
@@ -206,8 +218,30 @@ function HomeScreen({navigation}) {
           longitudeDelta: 0.0421,
         }}
       />
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingHorizontal: 10,
+          paddingTop: Platform.OS == 'android' ? 0 : 15,
+        }}>
+        <MaterialCommunityIcons name="menu" size={24} color="#fff" />
+
+        <Image
+          source={require('../screens/tom.jpg')}
+          style={{
+            width: 55,
+            height: 55,
+            borderRadius: 27.5,
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+          }}
+          resizeMode="cover"
+        />
+      </View>
       <Button navigation={navigation} />
-    </View>
+    </Screen>
   );
 }
 

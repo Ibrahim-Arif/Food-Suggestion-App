@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Text,
   FlatList,
+  Platform,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -124,7 +125,6 @@ function RestaurantScreen({}) {
           style={styles.coverImg}>
           <View
             style={{
-              paddingTop: 15,
               paddingHorizontal: 15,
             }}>
             <Header title="Restaurant Details" color="#fff" />
@@ -136,7 +136,7 @@ function RestaurantScreen({}) {
                 width: 100,
                 height: 100,
                 borderRadius: 25,
-                top: 50,
+                top: Platform.OS == 'android' ? 50 : 10,
               }}
             />
           </View>
@@ -176,16 +176,14 @@ function RestaurantScreen({}) {
               bottom: 25,
               left: 20,
             }}>
-            <Entypo
-              name="location-pin"
-              size={34}
-              color="#fff"
+            <View
               style={{
                 padding: 10,
                 backgroundColor: colors.purple,
                 borderRadius: 100,
-              }}
-            />
+              }}>
+              <Entypo name="location-pin" size={34} color="#fff" />
+            </View>
             <Text
               style={{
                 color: '#fff',
@@ -220,6 +218,7 @@ const styles = StyleSheet.create({
   coverImg: {
     width: '100%',
     height: '75%',
+    paddingTop: Platform.OS == 'android' ? 10 : 40,
   },
   topContainer: {
     height: Dimensions.get('screen').height * 0.35,
