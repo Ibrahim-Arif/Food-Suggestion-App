@@ -15,6 +15,8 @@
     "@unimodules/core": "^7.1.1",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-bottom-drawer-view": "^1.0.3",
+    "react-native-draggable-view": "0.0.6",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-image-picker": "^4.0.6",
     "react-native-maps": "0.28.0",

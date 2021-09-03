@@ -4,25 +4,23 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 import colors from '../config/colors';
 
-function SuggestButton({onPress, style}) {
+function SuggestButton({onPress}) {
   return (
-    <View style={style}>
+    <View style={{alignSelf: 'flex-end', bottom: 5}}>
       <TouchableOpacity
         onPress={onPress}
         style={{
           alignItems: 'center',
           right: 25,
         }}>
-        <SimpleLineIcons
-          name="cup"
-          size={26}
-          color="white"
+        <View
           style={{
             backgroundColor: colors.purple,
             padding: 15,
             borderRadius: 36,
-          }}
-        />
+          }}>
+          <SimpleLineIcons name="cup" size={26} color="white" />
+        </View>
         <Text style={{color: 'white', marginTop: 5}}>Suggest a Food</Text>
       </TouchableOpacity>
     </View>
