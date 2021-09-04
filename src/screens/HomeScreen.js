@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Image,
   Platform,
-  FlatList,
   TouchableOpacity,
 } from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
@@ -50,47 +49,43 @@ function HomeScreen({navigation}) {
         />
       </View>
 
-      <SuggestButton
-        onPress={() => {
-          navigation.navigate('Suggestion');
-        }}
-      />
+      <SuggestButton onPress={() => navigation.navigate('Suggestion')} />
 
-      <Modalize alwaysOpen={70} modalStyle={styles.modalContainer}>
-        <View style={styles.modalButton} />
+      <Modalize
+        alwaysOpen={60}
+        // snapPoint={350}
+        modalStyle={styles.modalContainer}
+        handlePosition="inside"
+        HeaderComponent={
+          <View style={styles.modalIcons}>
+            <Title title="Food Suggested" fontSize={20} />
 
-        <View style={styles.modalIcons}>
-          <Title title="Food Suggested" fontSize={20} />
-
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Ionicons
-              name="md-filter-outline"
-              size={26}
-              color="#fff"
-              style={{marginRight: 10}}
-              onPress={() => alert('Filter 1 pressed')}
-            />
-            <MaterialCommunityIcons
-              name="filter-outline"
-              size={26}
-              color="#fff"
-              onPress={() => alert('Filter 2 pressed')}
-            />
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Ionicons
+                name="md-filter-outline"
+                size={26}
+                color="#fff"
+                style={{marginRight: 10}}
+                onPress={() => alert('Filter 1 pressed')}
+              />
+              <MaterialCommunityIcons
+                name="filter-outline"
+                size={26}
+                color="#fff"
+                onPress={() => alert('Filter 2 pressed')}
+              />
+            </View>
           </View>
-        </View>
-
-        <FlatList
-          data={suggestionsList}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Restaurant');
-              }}>
+        }
+        flatListProps={{
+          data: suggestionsList,
+          renderItem: ({item}) => (
+            <TouchableOpacity onPress={() => navigation.navigate('Restaurant')}>
               <Card item={item} forRestuarant={true} />
             </TouchableOpacity>
-          )}
-        />
-      </Modalize>
+          ),
+        }}
+      />
     </Screen>
   );
 }
@@ -134,6 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: 10,
     paddingHorizontal: 15,
   },
 });
