@@ -8,6 +8,7 @@ import {
   Text,
   FlatList,
   Platform,
+  StatusBar,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -28,6 +29,7 @@ function RestaurantScreen({}) {
           style={styles.coverImg}>
           <View
             style={{
+              paddingTop: StatusBar.currentHeight,
               paddingHorizontal: 15,
             }}>
             <Header title="Restaurant Details" color="#fff" />
@@ -38,7 +40,7 @@ function RestaurantScreen({}) {
                 width: 100,
                 height: 100,
                 borderRadius: 25,
-                top: Platform.OS == 'android' ? 50 : 10,
+                top: Platform.OS == 'android' ? 25 : 10,
               }}
             />
           </View>

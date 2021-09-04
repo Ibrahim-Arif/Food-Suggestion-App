@@ -56,10 +56,7 @@ function HomeScreen({navigation}) {
         }}
       />
 
-      <Modalize
-        alwaysOpen={70}
-        // snapPoint={400}
-        modalStyle={styles.modalContainer}>
+      <Modalize alwaysOpen={70} modalStyle={styles.modalContainer}>
         <View style={styles.modalButton} />
 
         <View style={styles.modalIcons}>
@@ -84,7 +81,6 @@ function HomeScreen({navigation}) {
 
         <FlatList
           data={suggestionsList}
-          ListFooterComponent={<View style={{height: 15}} />}
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() => {
