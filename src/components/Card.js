@@ -61,8 +61,7 @@ function Card({item, forRestuarant = true}) {
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) => (
               <Image
-                // source={{uri: item.link}}
-                source={require('../screens/3.png')}
+                source={{uri: item.link}}
                 resizeMode="cover"
                 style={{
                   width: 80,
@@ -103,8 +102,7 @@ function Card({item, forRestuarant = true}) {
                 flexDirection: 'row',
               }}>
               <Image
-                // source={{uri: item.userProfile}}
-                source={require('../screens/4.jpg')}
+                source={{uri: item.userProfile}}
                 style={{
                   width: 35,
                   height: 35,

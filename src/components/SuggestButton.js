@@ -6,7 +6,7 @@ import colors from '../config/colors';
 
 function SuggestButton({onPress}) {
   return (
-    <View style={{alignSelf: 'flex-end', bottom: 5}}>
+    <View style={{position: 'absolute', right: 0, bottom: 75}}>
       <TouchableOpacity
         onPress={onPress}
         style={{
