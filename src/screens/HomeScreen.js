@@ -10,7 +10,6 @@ import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Modalize} from 'react-native-modalize';
-import Interactable from 'react-native-interactable';
 
 import colors from '../config/colors';
 import Screen from '../components/Screen';
@@ -27,16 +26,66 @@ function HomeScreen({navigation}) {
     longitudeDelta: 0.0421,
   };
 
-  const onDrawerSnap = () => {};
-
   return (
     <Screen style={styles.container}>
-      <Interactable.View
-        horizontalOnly={true}
-        snapPoints={[{x: 0}, {x: -200}]}
-        onSnap={onDrawerSnap}>
-        <View style={{flex: 1, backgroundColor: 'tomato'}} />
-      </Interactable.View>
+      <MapView
+        style={styles.map}
+        customMapStyle={MapStyles}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={initialRegion}
+      />
+      <View style={styles.topContainer}>
+        <MaterialCommunityIcons
+          name="menu"
+          size={24}
+          color="#fff"
+          onPress={() => alert('Menu icon pressed')}
+        />
+
+        <Image
+          source={require('../screens/tom.jpg')}
+          style={styles.userImage}
+          resizeMode="cover"
+        />
+      </View>
+
+      <SuggestButton onPress={() => navigation.navigate('Suggestion')} />
+
+      <Modalize
+        alwaysOpen={60}
+        // snapPoint={350}
+        modalStyle={styles.modalContainer}
+        handlePosition="inside"
+        HeaderComponent={
+          <View style={styles.modalIcons}>
+            <Title title="Food Suggested" fontSize={20} />
+
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Ionicons
+                name="md-filter-outline"
+                size={26}
+                color="#fff"
+                style={{marginRight: 10}}
+                onPress={() => alert('Filter 1 pressed')}
+              />
+              <MaterialCommunityIcons
+                name="filter-outline"
+                size={26}
+                color="#fff"
+                onPress={() => alert('Filter 2 pressed')}
+              />
+            </View>
+          </View>
+        }
+        flatListProps={{
+          data: suggestionsList,
+          renderItem: ({item}) => (
+            <TouchableOpacity onPress={() => navigation.navigate('Restaurant')}>
+              <Card item={item} forRestuarant={true} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Screen>
   );
 }
