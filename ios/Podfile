@@ -17,6 +17,8 @@ target 'foodapp4' do
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
 
+  pod 'Interactable', :path => '../node_modules/react-native-interactable'
+
   target 'foodapp4Tests' do
     inherit! :complete
     # Pods for testing
